@@ -1,5 +1,18 @@
 An example showing that if a Sqlite table has a compound index on it, Sequelize migrations that make a temporary table incorrectly apply a unique constraint to every column that was part of the compound index.
 
+With a compound unique index:
+
+```js
+await queryInterface.addIndex("posts", ["name", "image"], {
+  unique: true,
+  fields: ["name", "image"],
+});
+```
+
+Migrations which do a full table copy end up creating normal unique constraints (not indexes) on the columns which used to be in the index:
+
+![image](https://raw.githubusercontent.com/evantahler/sequleize-sqlite-migrations/master/images/image.png)
+
 ## Instructions
 
 1. Clone this repo
