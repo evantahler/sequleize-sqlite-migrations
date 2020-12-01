@@ -1,5 +1,7 @@
 An example showing that if a Sqlite table has a compound index on it, Sequelize migrations that make a temporary table incorrectly apply a unique constraint to every column that was part of the compound index.
 
+For https://github.com/sequelize/sequelize/issues/12823
+
 With a compound unique index:
 
 ```js
